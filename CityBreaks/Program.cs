@@ -1,4 +1,5 @@
 using CityBreaks.Data;
+using CityBreaks.Pages;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

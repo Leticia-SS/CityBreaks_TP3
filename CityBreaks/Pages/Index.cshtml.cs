@@ -1,3 +1,5 @@
+using CityBreaks.Data;
+using CityBreaks.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -5,16 +7,20 @@ namespace CityBreaks.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        
+        private readonly ICityService _cityService;
+        public List<City> Cities { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(ICityService cityService)
         {
-            _logger = logger;
+            _cityService = cityService;
         }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-
+            Cities = await _cityService.GetAllAsync();
         }
+
+
     }
 }
