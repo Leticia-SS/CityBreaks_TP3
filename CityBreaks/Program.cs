@@ -9,6 +9,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<CityBreaksContext>(
     options => options.UseSqlite(builder.Configuration.GetConnectionString("WiredBrain")));
 
+builder.Services.AddScoped<ICityService, CityService>();
 
 var app = builder.Build();
 
