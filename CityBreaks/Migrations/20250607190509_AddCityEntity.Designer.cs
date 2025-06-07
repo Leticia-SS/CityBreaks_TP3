@@ -2,6 +2,7 @@
 using CityBreaks.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CityBreaks.Migrations
 {
     [DbContext(typeof(CityBreaksContext))]
-    partial class CityBreaksContextModelSnapshot : ModelSnapshot
+    [Migration("20250607190509_AddCityEntity")]
+    partial class AddCityEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.16");
@@ -33,7 +36,7 @@ namespace CityBreaks.Migrations
 
                     b.HasIndex("CountryId");
 
-                    b.ToTable("Cities");
+                    b.ToTable("City");
                 });
 
             modelBuilder.Entity("CityBreaks.Models.Country", b =>
@@ -55,29 +58,6 @@ namespace CityBreaks.Migrations
                     b.ToTable("Countries");
                 });
 
-            modelBuilder.Entity("CityBreaks.Models.Property", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CityId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<decimal>("PricePerNight")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CityId");
-
-                    b.ToTable("Properties");
-                });
-
             modelBuilder.Entity("CityBreaks.Models.City", b =>
                 {
                     b.HasOne("CityBreaks.Models.Country", "Country")
@@ -87,22 +67,6 @@ namespace CityBreaks.Migrations
                         .IsRequired();
 
                     b.Navigation("Country");
-                });
-
-            modelBuilder.Entity("CityBreaks.Models.Property", b =>
-                {
-                    b.HasOne("CityBreaks.Models.City", "City")
-                        .WithMany("Properties")
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("City");
-                });
-
-            modelBuilder.Entity("CityBreaks.Models.City", b =>
-                {
-                    b.Navigation("Properties");
                 });
 
             modelBuilder.Entity("CityBreaks.Models.Country", b =>
