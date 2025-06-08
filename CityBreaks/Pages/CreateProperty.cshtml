@@ -2,3 +2,35 @@
 @model CityBreaks.Pages.CreatePropertyModel
 @{
 }
+
+<h2>Cadastrar Propriedade</h2>
+
+<form method="post" class="mt-4">
+    <div class="mb-3">
+        <label asp-for="Property.Name" class="form-label">Nome</label>
+        <input asp-for="Property.Name" class="form-control" />
+        <span asp-validation-for="Property.Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Property.PricePerNight" class="form-label">Preço por Noite</label>
+        <input asp-for="Property.PricePerNight" class="form-control" />
+        <span asp-validation-for="Property.PricePerNight" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Property.CityId" class="form-label">Cidade</label>
+        <select asp-for="Property.CityId" class="form-select" asp-items="Model.Cities">
+            <option value="">Selecione uma cidade</option>
+        </select>
+        <span asp-validation-for="Property.CityId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
+    
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
