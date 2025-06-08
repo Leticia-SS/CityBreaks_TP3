@@ -23,10 +23,16 @@ else
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         @prop.Name
                         <span class="badge bg-primary rounded-pill">@prop.PricePerNight.ToString("C") por noite</span>
+                        <span>
+                            <a asp-page="/EditProperty" asp-route-id="@prop.Id" class="btn btn-sm btn-warning">Editar</a>
+                        </span>
                     </li>
+
                 }
             </ul>
         }
+
+
         else
         {
             <p class="text-muted">Nenhuma propriedade cadastrada nesta cidade.</p>

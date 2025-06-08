@@ -11,6 +11,7 @@ namespace CityBreaks.Data.Configuration
         public void Configure(EntityTypeBuilder<Property> builder) 
         {
             builder.Property(p => p.Name)
+                .IsRequired()
                 .HasMaxLength(100)
                 .HasColumnName("PropertyName");
             builder.HasData(
